@@ -119,21 +119,6 @@ The app will be running at `http://localhost:3000`
 
 ---
 
-## 📦 Folder Structure
-
-```
-src/
-│
-├── components/
-│   └── FlowCanvas.jsx     # Main board component
-│   └── ContextMenu.jsx    # Right-click menu placeholder
-│
-├── App.jsx                # Entry point with ReactFlowProvider
-├── index.js               # Root render
-```
-
----
-
 ## 💡 Future Improvements (Optional)
 
 - Export/Import flow data as JSON
