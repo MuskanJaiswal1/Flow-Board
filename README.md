@@ -1,70 +1,146 @@
-# Getting Started with Create React App
+# 🧠 React Flow Interaction Board
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive canvas built using **React Flow**, designed to allow users to drag and drop blocks, connect them with defined rules, and interact in a structured visual flow environment.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 Overview
 
-### `npm start`
+This project is part of a Frontend Developer Task focused on working with **React Flow**, UI interactions, event handling, and modular architecture.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Key features include:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- A canvas that allows drag-and-drop of predefined blocks (`Block A`, `Block B`)
+- Only **Block A ➝ Block B** connections are allowed
+- Keyboard support for deleting selected nodes and edges
+- Undo and Redo capabilities with state history
+- Visual feedback via edge styling and minimap
+- LocalStorage integration for auto-save functionality
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Getting Started
 
-### `npm run build`
+### ✅ Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure you have the following installed:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Node.js** (v14+)
+- **npm** or **yarn**
+- Modern browser (Chrome recommended)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+### 🛠️ Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Clone the repository and install dependencies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/YOUR_USERNAME/react-flow-board.git
+cd react-flow-board
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 📦 Running the App
 
-## Learn More
+To start the development server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The app will be running at `http://localhost:3000`
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🧩 Usage
 
-### Analyzing the Bundle Size
+### 🎯 Functional Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. **Drag Blocks:**
+   - Drag `Block A` or `Block B` from the right-side panel into the canvas.
 
-### Making a Progressive Web App
+2. **Connect Blocks:**
+   - Connect `Block A ➝ Block B` by clicking and dragging between nodes.
+   - Other combinations are **not allowed** and show a toast error.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. **Select & Delete:**
+   - Click a node or edge to select it.
+   - Use `Delete` or `Backspace` to remove selected elements.
+   - Multi-select using `Ctrl` + Click` or click-and-drag selection.
 
-### Advanced Configuration
+4. **Undo/Redo:**
+   - Use the **Undo** and **Redo** buttons at the top-left to move between canvas states.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5. **Right Click:**
+   - Right-click a node to open the context menu (placeholder UI for potential actions).
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🧠 Summary of Solution
 
-### `npm run build` fails to minify
+- **React Flow Renderer** is used for creating the node-edge interaction model.
+- The canvas uses **react hooks and context** for dynamic interaction and state tracking.
+- Edges are validated such that only `Block A ➝ Block B` connections are created.
+- Undo/Redo is achieved via a manual stack history and future stack implementation.
+- A responsive UI with TailwindCSS makes the design minimal and developer-friendly.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 🧪 Features Recap
+
+| Feature                  | Status |
+|--------------------------|--------|
+| Drag & Drop Nodes        | ✅     |
+| Block A ➝ Block B Only   | ✅     |
+| Select + Delete          | ✅     |
+| Undo / Redo              | ✅     |
+| MiniMap & Controls       | ✅     |
+| Context Menu on Nodes    | ✅     |
+| LocalStorage Save        | ✅     |
+
+---
+
+## 🎨 Design Decisions
+
+1. **Minimal Customization**  
+   Kept the UI clean using TailwindCSS without overcomplicating interactions.
+
+2. **No Custom Edge Component**  
+   The default edge component was sufficient for this task. Selection logic was handled via edge `style` props.
+
+3. **Validation Logic inside `onConnect`**  
+   The node types (`Block A`, `Block B`) were compared during the `onConnect` callback to restrict edge creation.
+
+4. **Undo/Redo Mechanism**  
+   Implemented using state stacks (`history`, `future`) to store node/edge state snapshots on every change.
+
+---
+
+## 📦 Folder Structure
+
+```
+src/
+│
+├── components/
+│   └── FlowCanvas.jsx     # Main board component
+│   └── ContextMenu.jsx    # Right-click menu placeholder
+│
+├── App.jsx                # Entry point with ReactFlowProvider
+├── index.js               # Root render
+```
+
+---
+
+## 💡 Future Improvements (Optional)
+
+- Export/Import flow data as JSON
+- Add node customization (icons, colors, types)
+- Real-time collaboration with WebSockets
+- Custom edge with dynamic labels or icons
+
+---
+
+> Built with ❤️ using React and React Flow
